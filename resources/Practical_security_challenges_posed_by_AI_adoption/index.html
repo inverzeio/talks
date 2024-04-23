@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document Upload</title>
+</head>
+<body>
+    <h1>Upload a Document</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".png, .jpg, .jpeg, .pdf">
+        <input type="submit" value="Upload">
+    </form>
+    <h2>Uploaded Documents</h2>
+    <ul>
+        {% for document in documents %}
+            <li><a href="{{ url_for('uploaded_file', filename=document.filename) }}">{{ document.filename }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
