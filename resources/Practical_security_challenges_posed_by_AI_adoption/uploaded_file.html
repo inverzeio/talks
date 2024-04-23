@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uploaded File</title>
+</head>
+<body>
+    <h1>Uploaded File</h1>
+    {% if filename.endswith('.png') or filename.endswith('.jpg') or filename.endswith('.jpeg') %}
+        <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image">
+    {% else %}
+        <p>This is not an image file.</p>
+    {% endif %}
+    <p><a href="{{ url_for('index') }}">Back to Upload</a></p>
+</body>
+</html>
