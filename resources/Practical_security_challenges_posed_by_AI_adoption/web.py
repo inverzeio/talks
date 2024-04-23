@@ -12,12 +12,13 @@ class Document(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     filename = db.Column(db.String(100))
 
-db.create_all()
+with app.app_context(): #https://stackoverflow.com/a/74000056/12534623
+    db.create_all()
 
 @app.route('/')
 def index():
     documents = Document.query.all()
-    return render_template('index.html', documents=documents)
+    return render_template('index.html') # https://stackoverflow.com/a/60256471/12534623
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -42,5 +43,4 @@ def uploaded_file(filename):
     return render_template('uploaded_file.html', filename=filename)
 
 if __name__ == '__main__':
-    with app.app_context():
-        app.run(debug=True)
+    app.run(debug=True)
